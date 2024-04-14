@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\PerfilUsuario.css" />
     <Content Include="CSS\style-validacion-info.css" />
     <Content Include="CSS\style.css" />
     <Content Include="Formulario.aspx" />
