@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="./CSS/style.css" />
     <link rel="stylesheet" href="./CSS/style-validacion-info.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" type="image/png" href="./img/download-removebg-preview (1).png" />
     <!-- Agregamos Font Awesome -->
 </head>
 <body>
     <form id="form1" runat="server">
        <header>
-            <img src="./img/download-removebg-preview (1).png" />
+             <a href="Principal.aspx">
+                <img src="./img/download-removebg-preview (1).png" />
+            </a>
             <h1 style="color: white;">ARAYA LEANDRO SANTIAGO ANDRES</h1>
             <asp:LinkButton ID="BtnCerrarSesion" runat="server" CssClass="Btn" >
                 <div class="sign">
