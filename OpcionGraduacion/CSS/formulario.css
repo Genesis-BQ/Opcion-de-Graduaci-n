@@ -1,61 +1,162 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    max-width: 600px;
-    margin: 50px auto;
+﻿.container {
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto 110px;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease; /* Prefijo para WebKit (Chrome, Safari) */
+    transition: all 0.3s ease;
 }
+
+    .container:hover {
+        -webkit-transform: translateY(-5px); /* Prefijo para WebKit */
+        transform: translateY(-5px);
+    }
 
 h1 {
     text-align: center;
-    color: #333;
-}
-
-form {
-    margin-top: 20px;
+    color: #014E70;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 28px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: bold;
+    color: #333;
 }
 
 input[type="email"],
 input[type="text"],
 select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #014E70;
+    border-radius: 8px;
     box-sizing: border-box;
+    -webkit-transition: border-color 0.3s ease; /* Prefijo para WebKit */
+    transition: border-color 0.3s ease;
+}
+
+    input[type="email"]:focus,
+    input[type="text"]:focus,
+    select:focus {
+        outline: none;
+        border-color: #014E70;
+    }
+
+select {
+    -webkit-appearance: none; /* Prefijo para WebKit */
+    -moz-appearance: none; /* Prefijo para Firefox */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 10'%3E%3Cpath fill='%23014E70' d='M.6 3.3l.6-.6L4 5.8 6.8 2.7l.6.6L4 7.2z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
 }
 
 input[type="checkbox"] {
-    margin-top: 5px;
+    margin-top: 10px;
+    -webkit-appearance: none; /* Prefijo para WebKit */
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
 }
+
+    input[type="checkbox"]:hover {
+        border-color: #014E70;
+    }
+
+    input[type="checkbox"]:checked {
+        background-color: #014E70;
+        border-color: #014E70;
+    }
+
+        input[type="checkbox"]:checked::after {
+            content: "\2713";
+            font-size: 14px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
 button {
-    background-color: #4CAF50;
+    font-family: inherit;
+    font-size: 20px;
+    background: #014E70;
     color: white;
-    padding: 15px 20px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease; /* Prefijo para WebKit */
+    transition: all 0.3s ease;
     cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
+    position: relative;
 }
 
+    button span {
+        display: block;
+        margin-left: 10px;
+        opacity: 1;
+        -webkit-transition: all 0.3s ease; /* Prefijo para WebKit */
+        transition: all 0.3s ease;
+    }
+
+    button svg {
+        display: block;
+        transform-origin: center center;
+        -webkit-transition: transform 0.3s ease; /* Prefijo para WebKit */
+        transition: transform 0.3s ease;
+    }
+
     button:hover {
-        background-color: #45a049;
+        background: #012B40;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+        button:hover svg {
+            transform: translateX(1em) rotate(45deg) scale(1.1);
+        }
+
+        button:hover span {
+            transform: translateX(4em);
+            opacity: 0;
+        }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+
+    to {
+        transform: translateY(-0.1em);
+    }
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #666;
+}
+
+    footer p {
+        margin: 0;
+        font-size: 14px;
     }
