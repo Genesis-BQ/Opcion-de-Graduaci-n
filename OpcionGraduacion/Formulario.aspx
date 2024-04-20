@@ -8,6 +8,7 @@
     <title>Registro de Opción de Graduación</title>
     <link href="CSS/formulario.css" rel="stylesheet" />
      <link rel="stylesheet" href="./CSS/style.css" />
+     <link rel="icon" type="image/png" href="./img/download-removebg-preview (1).png" />
 </head>
 <body>
     <form id="form1" runat="server">
