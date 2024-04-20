@@ -70,11 +70,13 @@
     <Content Include="CSS\formulario.css" />
     <Content Include="CSS\Login.css" />
     <Content Include="CSS\PerfilUsuario.css" />
+    <Content Include="CSS\Registro.css" />
     <Content Include="CSS\style-validacion-info.css" />
     <Content Include="CSS\style.css" />
     <Content Include="Formulario.aspx" />
     <Content Include="img\download-removebg-preview %281%29.png" />
     <Content Include="img\download-removebg-preview.png" />
+    <Content Include="img\LogoCuc-removebg-preview.png" />
     <Content Include="img\opGrad.png" />
     <Content Include="img\valid.png" />
     <Content Include="img\verif.png" />
