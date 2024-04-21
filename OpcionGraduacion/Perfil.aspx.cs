@@ -13,7 +13,7 @@ namespace OpcionGraduacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.HttpMethod == "POST" && !string.IsNullOrEmpty(Request.Form["cedula"]))
+            if (Request.HttpMethod == "POST" && !string.IsNullOrEmpty(Request.Form["cedula"])) 
             {
                 string cedula = Request.Form["cedula"];
 
