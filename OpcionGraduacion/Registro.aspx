@@ -20,21 +20,44 @@
             <form id="Form1" runat="server">
                 <div class="input-group">
                     <label for="id">Identificación:</label>
-                    <input type="text" id="id" name="id" required>
-                </div>
-                <div class="input-group">
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="text" id="id" name="id"  onblur="buscarUsuarioPorCedula()" required/>
                 </div>
 
                 <div class="input-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" required/>
                 </div>
                 <div class="input-group">
-                    <label for="apellidos">Apellidos:</label>
-                    <input type="text" id="apellidos" name="apellidos" required>
+                    <label for="apellido">Apellidos:</label>
+                    <input type="text" id="apellido" name="apellido" required />
                 </div>
+
+                <div class="input-group">
+                    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required/>
+                </div>
+
+                <div class="input-group">
+                    <label for="residencia">Lugar de residencia:</label>
+                    <input type="text" id="residencia" name="residencia" required/>
+                </div>
+                <div class="input-group">
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required/>
+                        <option value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="telefono">Número de teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required/>
+                </div>
+                <div class="input-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required/>
+                </div>
+
                 <div class="input-group">
                     <label for="carrera">Carrera:</label>
                     <select id="carrera" name="carrera" required>
@@ -42,32 +65,16 @@
                         <option value="medicina">Medicina</option>
                     </select>
                 </div>
-                <div class="input-group">
-                    <label for="residencia">Lugar de residencia:</label>
-                    <input type="text" id="residencia" name="residencia" required>
-                </div>
-                <div class="input-group">
-                    <label for="genero">Género:</label>
-                    <select id="genero" name="genero" required>
-                        <option value="femenino">Femenino</option>
-                        <option value="masculino">Masculino</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="fechaNacimiento">Fecha de nacimiento:</label>
-                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-                </div>
-                <div class="input-group">
-                    <label for="telefono">Número de teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" required>
-                </div>
+             
                 <div class="input-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" required/>
                 </div>
                 <div class="input-group">
-                    <button type="submit" class="submit-btn">Registrar</button>
+                     <asp:Button ID="btnGuardar" class="submit-btn" runat="server" OnClick="btnGuardar_Click" Text="Registrar" />
+                    
                 </div>
+                <asp:Label ID="labelmensaje" runat="server"></asp:Label>
             </form>
         </div>
 
@@ -75,6 +82,31 @@
     <footer class="footer">
         <p>Sistema Registro de opcion de graduación. Todos los Derechos Reservados</p>
     </footer>
+    <script>
+        function buscarUsuarioPorCedula() {
+            var cedula = document.getElementById("id").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "Registro.aspx", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var usuario = JSON.parse(xhr.responseText);
+                    // Actualiza los campos del formulario con los datos del usuario
+                    document.getElementById("nombre").value = usuario.Nombre;
+                    document.getElementById("apellido").value = usuario.Apellido;
+                    document.getElementById("fechaNacimiento").value = usuario.FechaNacimiento;
+                    document.getElementById("residencia").value = usuario.Residencia;
+                    document.getElementById("genero").value = usuario.Genero;
+                    document.getElementById("telefono").value = usuario.Telefono;
+                    document.getElementById("email").value = usuario.CorreoElectronico;
+                    document.getElementById("carrera").value = usuario.Carrera;
+   
+                }
+            };
+            xhr.send("cedula=" + encodeURIComponent(cedula));
+        }
+    </script>
+
 </body>
 
 </html>

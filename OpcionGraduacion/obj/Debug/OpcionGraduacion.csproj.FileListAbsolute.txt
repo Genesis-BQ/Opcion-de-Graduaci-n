@@ -293,3 +293,5 @@ C:\Users\gbara\Documents\OpcionGraducacion\OpcionGraduacion\obj\Debug\OpcionGrad
 C:\Users\gbara\Documents\OpcionGraducacion\OpcionGraduacion\obj\Debug\OpcionGraduacion.csproj.CopyComplete
 C:\Users\gbara\Documents\OpcionGraducacion\OpcionGraduacion\obj\Debug\OpcionGraduacion.dll
 C:\Users\gbara\Documents\OpcionGraducacion\OpcionGraduacion\obj\Debug\OpcionGraduacion.pdb
+C:\Users\gbara\Documents\Sbir\OpcionGraduacion\OpcionGraduacion\bin\Newtonsoft.Json.dll
+C:\Users\gbara\Documents\Sbir\OpcionGraduacion\OpcionGraduacion\bin\Newtonsoft.Json.xml
