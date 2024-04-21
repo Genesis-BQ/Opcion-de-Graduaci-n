@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Principal.aspx.cs" Inherits="OpcionGraduacion.Principal" %>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
@@ -13,7 +15,7 @@
             <a href="Principal.aspx">
                 <img src="./img/download-removebg-preview (1).png" />
             </a>
-            <h1 style="color: white;">ARAYA LEANDRO SANTIAGO ANDRES</h1>
+            <h1 style="color: white;">Colegio Universitario de Cartago</h1>
             <asp:LinkButton ID="BtnCerrarSesion" runat="server" CssClass="Btn">
                 <div class="sign">
                     <svg viewBox="0 0 512 512">
@@ -49,3 +51,4 @@
     </form>
 </body>
 </html>
+

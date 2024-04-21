@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace OpcionGraduacion
 {
@@ -12,8 +7,8 @@ namespace OpcionGraduacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
+
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             // Obtener los valores ingresados por el usuario
