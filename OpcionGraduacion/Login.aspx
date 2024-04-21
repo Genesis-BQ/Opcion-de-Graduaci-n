@@ -15,18 +15,19 @@
         <div class="form-container">
             <form id="Form1" runat="server" class="login-form">
                 <div class="input-group">
-                    <label for="usuario">Usuario</label>
-                    <input type="text" id="usuario" name="usuario" required>
+                    <label for="usuarios">Usuario</label>
+                    <input type="text" id="usuarios" name="usuarios" runat="server" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" runat="server" required>
                 </div>
-                <input type="submit" value="Ingresar" class="submit-btn">
+                 <asp:Button ID="btnIngresar" class="submit-btn" runat="server" OnClick="btnIngresar_Click" Text="Ingresar" />
                 <div class="login-links">
                     <a href="Registro">Registrarse</a>
                     
                 </div>
+                <asp:Label ID="labelmensaje" runat="server"></asp:Label>
             </form>
         </div>
         <footer class="footer">
