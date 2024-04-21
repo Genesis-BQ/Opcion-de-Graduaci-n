@@ -1,112 +1,128 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="OpcionGraduacion.Perfil" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Perfil de Usuario</title>
-    <%--<link rel="stylesheet" href="./CSS/style.css" />--%>
-    <link rel="stylesheet" href="./CSS/PerfilUsuario.css" />
-    <link rel="icon" type="image/png" href="./img/download-removebg-preview (1).png" />
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="./CSS/Registro.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <header>
-            <a href="Principal.aspx">
-                <img src="./img/download-removebg-preview (1).png" />
-            </a>
-            <h1 style="color: white;">Perfil de Usuario</h1>
-            <asp:LinkButton ID="BtnCerrarSesion" runat="server" CssClass="Btn" >
-                <div class="sign">
-                    <svg viewBox="0 0 512 512">
-                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
-                    </svg>
-                </div>
-                <div class="text">Cerrar Sesión</div>
-            </asp:LinkButton>
-        </header>
-        <main>
-            <div class="formulario-container">
-                <div class="Formulario">
-                    <form id="profile-form">
-                        <div class="form-group">
-                            <h1>Mi Perfil</h1>
-                            <label for="Identificacion">Identificacion:</label>
-                            <input type="text" id="Identificacion" name="Identificacion" runat="server"/>
-                            
-                        </div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" runat="server" />
-                        </div>
-                        <div class="form-group">
-                            <label for="apellidos">Apellidos:</label>
-                            <input type="text" id="apellidos" name="apellidos" runat="server" />
-                        </div>
-                        <div class="form-group">
-                            <label for="fechanacimiento">Fecha Nacimiento:</label>
-                            <input type="text" id="fechanacimiento" name="fechanacimiento" runat="server" />
-                        </div>
-                        <div class="form-group">
-                            <label for="residencia">Lugar de Residencia:</label>
-                            <input type="text" id="residencia" name="residencia" runat="server"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="genero">Género:</label>
-                            <select id="genero" name="genero" runat="server">
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Número de Teléfono:</label>
-                            <input type="tel" id="telefono" name="telefono" runat="server"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="carrera">Carrera:</label>
-                            <input type="text" id="carrera" name="carrera" runat="server"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="correo">Correo Institucional:</label>
-                            <input type="text" id="correo" name="correo" runat="server"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="contrasena">Contraseña:</label>
-                            <input type="text" id="contrasena" name="contrasena" runat="server" />
-                        </div>
-                        <button>
-                            <div class="svg-wrapper-1">
-                                <div class="svg-wrapper">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        width="24"
-                                        height="24"
-                                    >
-                                        <path fill="none" d="M0 0h24v24H0z"></path>
-                                        <path
-                                            fill="currentColor"
-                                            d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                                        ></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <span>Guardar</span>
-                        </button>
-                        <asp:Button ID="btnCargar" runat="server" OnClick="btnCargar_Click" Text="Cargar" />
-                        <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
-                        <asp:Label ID="labelmensaje" runat="server"></asp:Label>
-                    </form>
-                </div>
-            </div>
-        </main>
+    <header class="header">
+      
+        <img class="logo" src="./img/LogoCuc-removebg-preview.png" alt="Logo" />
+        <h1 class="title">Registro de Usuario</h1>
+    </header>
+    <div class="container">
 
-        <footer>
-            <p>Sistema Registro de Matricula. Todos los Derechos Reservados</p>
-        </footer>
-    </form>
-    
+        <div class="form-container">
+            <form id="Form1" runat="server">
+                <div class="input-group">
+                    <label for="id">Identificación:</label>
+                    <input type="text" id="id" name="id"  onblur="buscarUsuarioPorCedula()" required/>
+                </div>
+
+                <div class="input-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required/>
+                </div>
+                <div class="input-group">
+                    <label for="apellido">Apellidos:</label>
+                    <input type="text" id="apellido" name="apellido" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required/>
+                </div>
+
+                <div class="input-group">
+                    <label for="residencia">Lugar de residencia:</label>
+                    <input type="text" id="residencia" name="residencia" required/>
+                </div>
+                <div class="input-group">
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required/>
+                        <option value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="telefono">Número de teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required/>
+                </div>
+                <div class="input-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required/>
+                </div>
+
+                <div class="input-group">
+                    <label for="carrera">Carrera:</label>
+                    <select id="carrera" name="carrera" required>
+                        <option value="Administracion de Empresas">Administracion de Empresas</option>
+                        <option value="Electrónica">Electrónica</option>
+                        <option value="Investigación Criminal">Investigación Criminal</option>
+                         <option value="Mecánica Dental">Mecánica Dental</option>
+                         <option value="Secretario Ejecutivo">Secretario Ejecutivo</option>
+                         <option value="Ingeniería Informática">Ingeniería Informática</option>
+                         <option value="Turismo">Turismo</option>
+                        <option value="Big Data">Big Data</option>
+                        <option value="Géstion Calidad">Géstion Calidad</option>
+                    </select>
+                </div>
+             
+                <div class="input-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required/>
+                </div>
+                <div class="input-group">
+                     <asp:Button ID="btnGuardar" class="submit-btn" runat="server" OnClick="btnGuardar_Click" Text="Registrar" />
+                    
+                </div>
+                <asp:Label ID="labelmensaje" runat="server"></asp:Label>
+            </form>
+        </div>
+
+    </div>
+    <footer class="footer">
+        <p>Sistema Registro de opcion de graduación. Todos los Derechos Reservados</p>
+    </footer>
+    <script>
+        function buscarUsuarioPorCedula() {
+            var cedula = document.getElementById("id").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "Registro.aspx", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var usuario = JSON.parse(xhr.responseText);
+                    // Verifica si el usuario es válido
+                    if (usuario && usuario.Identificacion) {
+                        // Actualiza los campos del formulario con los datos del usuario
+                        document.getElementById("nombre").value = usuario.Nombre;
+                        document.getElementById("apellido").value = usuario.Apellido;
+                        document.getElementById("fechaNacimiento").value = usuario.FechaNacimiento;
+                        document.getElementById("residencia").value = usuario.Residencia;
+                        document.getElementById("genero").value = usuario.Genero;
+                        document.getElementById("telefono").value = usuario.Telefono;
+                        document.getElementById("email").value = usuario.CorreoElectronico;
+                        document.getElementById("carrera").value = usuario.Carrera;
+                        document.getElementById("password").value = usuario.Contraseña;
+                    } else {
+                        // Muestra el mensaje de error en el label
+                        document.getElementById("labelmensaje").innerText = "Error de validación: Se han encontrado problemas con los datos ingresados.";
+                    }
+                }
+            };
+            xhr.send("cedula=" + encodeURIComponent(cedula));
+        }
+    </script>
+
+
 </body>
+
 </html>
+
