@@ -61,8 +61,15 @@
                 <div class="input-group">
                     <label for="carrera">Carrera:</label>
                     <select id="carrera" name="carrera" required>
-                        <option value="ingenieria">Ingeniería</option>
-                        <option value="medicina">Medicina</option>
+                        <option value="Administracion de Empresas">Administracion de Empresas</option>
+                        <option value="Electrónica">Electrónica</option>
+                        <option value="Investigación Criminal">Investigación Criminal</option>
+                         <option value="Mecánica Dental">Mecánica Dental</option>
+                         <option value="Secretario Ejecutivo">Secretario Ejecutivo</option>
+                         <option value="Ingeniería Informática">Ingeniería Informática</option>
+                         <option value="Turismo">Turismo</option>
+                        <option value="Big Data">Big Data</option>
+                        <option value="Géstion Calidad">Géstion Calidad</option>
                     </select>
                 </div>
              
@@ -91,21 +98,27 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var usuario = JSON.parse(xhr.responseText);
-                    // Actualiza los campos del formulario con los datos del usuario
-                    document.getElementById("nombre").value = usuario.Nombre;
-                    document.getElementById("apellido").value = usuario.Apellido;
-                    document.getElementById("fechaNacimiento").value = usuario.FechaNacimiento;
-                    document.getElementById("residencia").value = usuario.Residencia;
-                    document.getElementById("genero").value = usuario.Genero;
-                    document.getElementById("telefono").value = usuario.Telefono;
-                    document.getElementById("email").value = usuario.CorreoElectronico;
-                    document.getElementById("carrera").value = usuario.Carrera;
-   
+                    // Verifica si el usuario es válido
+                    if (usuario && usuario.Identificacion) {
+                        // Actualiza los campos del formulario con los datos del usuario
+                        document.getElementById("nombre").value = usuario.Nombre;
+                        document.getElementById("apellido").value = usuario.Apellido;
+                        document.getElementById("fechaNacimiento").value = usuario.FechaNacimiento;
+                        document.getElementById("residencia").value = usuario.Residencia;
+                        document.getElementById("genero").value = usuario.Genero;
+                        document.getElementById("telefono").value = usuario.Telefono;
+                        document.getElementById("email").value = usuario.CorreoElectronico;
+                        document.getElementById("carrera").value = usuario.Carrera;
+                    } else {
+                        // Muestra el mensaje de error en el label
+                        document.getElementById("labelmensaje").innerText = "Error de validación: Se han encontrado problemas con los datos ingresados.";
+                    }
                 }
             };
             xhr.send("cedula=" + encodeURIComponent(cedula));
         }
     </script>
+
 
 </body>
 

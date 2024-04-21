@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 
 namespace OpcionGraduacion
@@ -14,7 +8,7 @@ namespace OpcionGraduacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.HttpMethod == "POST")
+            if (Request.HttpMethod == "POST" && !string.IsNullOrEmpty(Request.Form["cedula"]))
             {
                 string cedula = Request.Form["cedula"];
 
@@ -85,57 +79,63 @@ namespace OpcionGraduacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Obtén los valores del formulario
-            int identificacion = Convert.ToInt32(Request.Form["id"]);
-            string nombre = Request.Form["nombre"];
-            string apellido = Request.Form["apellido"];
-            DateTime fechaNacimiento = Convert.ToDateTime(Request.Form["fechaNacimiento"]);
-            string residencia = Request.Form["residencia"];
-            string genero = Request.Form["genero"];
-            int telefono = Convert.ToInt32(Request.Form["telefono"]);
-            string correo = Request.Form["email"];
-            string carrera = Request.Form["carrera"];
-            string contraseña = Request.Form["password"];
-
-
-            // Cadena de conexión a la base de datos
-            string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
-
-            // Consulta SQL para insertar un nuevo usuario
-            string query = @"UPDATE [opciongraduacion].[opc].[Usuarios] 
-                     SET [Nombre] = @Nombre, [Apellido] = @Apellido, [Residencia] = @Residencia, [Genero] = @Genero, 
-                         [Telefono] = @Telefono, [Carrera] = @Carrera, [CorreoElectronico] = @Correo, [Contraseña] = @Contrasena 
-                     WHERE [Identificacion] = @Identificacion";
-
-            // Establecer la conexión y ejecutar la consulta
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Identificacion", identificacion);
-                command.Parameters.AddWithValue("@Nombre", nombre);
-                command.Parameters.AddWithValue("@Apellido", apellido);
-                command.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
-                command.Parameters.AddWithValue("@Residencia", residencia);
-                command.Parameters.AddWithValue("@Genero", genero);
-                command.Parameters.AddWithValue("@Telefono", telefono);
-                command.Parameters.AddWithValue("@Carrera", carrera);
-                command.Parameters.AddWithValue("@Correo", correo);
-                command.Parameters.AddWithValue("@Contrasena", contraseña);
+                // Obtén los valores del formulario
+                int identificacion = Convert.ToInt32(Request.Form["id"]);
+                string nombre = Request.Form["nombre"];
+                string apellido = Request.Form["apellido"];
+                DateTime fechaNacimiento = Convert.ToDateTime(Request.Form["fechaNacimiento"]);
+                string residencia = Request.Form["residencia"];
+                string genero = Request.Form["genero"];
+                int telefono = Convert.ToInt32(Request.Form["telefono"]);
+                string correo = Request.Form["email"];
+                string carrera = Request.Form["carrera"];
+                string contraseña = Request.Form["password"];
 
+                // Cadena de conexión a la base de datos
+                string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
 
-                connection.Open();
-                int rowsAffected = command.ExecuteNonQuery();
-                connection.Close();
+                // Consulta SQL para actualizar los datos del usuario
+                string query = @"UPDATE [opciongraduacion].[opc].[Usuarios] 
+                         SET [Nombre] = @Nombre, [Apellido] = @Apellido, [FechaNacimiento] = @FechaNacimiento,
+                             [Residencia] = @Residencia, [Genero] = @Genero, [Telefono] = @Telefono,
+                             [Carrera] = @Carrera, [CorreoElectronico] = @Correo, [Contraseña] = @Contrasena 
+                         WHERE [Identificacion] = @Identificacion";
 
-                if (rowsAffected > 0)
+                // Establecer la conexión y ejecutar la consulta
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    labelmensaje.Text = "Sus datos se validaron con éxito. El formulario de registro ha sido aceptado";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Identificacion", identificacion);
+                    command.Parameters.AddWithValue("@Nombre", nombre);
+                    command.Parameters.AddWithValue("@Apellido", apellido);
+                    command.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
+                    command.Parameters.AddWithValue("@Residencia", residencia);
+                    command.Parameters.AddWithValue("@Genero", genero);
+                    command.Parameters.AddWithValue("@Telefono", telefono);
+                    command.Parameters.AddWithValue("@Carrera", carrera);
+                    command.Parameters.AddWithValue("@Correo", correo);
+                    command.Parameters.AddWithValue("@Contrasena", contraseña);
 
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connection.Close();
+
+                    if (rowsAffected > 0)
+                    {
+                        labelmensaje.Text = "Sus datos se validaron con éxito. El formulario de registro ha sido aceptado";
+                    }
+                    else
+                    {
+                        labelmensaje.Text = "Por favor complete todos los campos obligatorios antes de enviar el formulario. Hay campos vacíos que deben ser llenados.";
+                    }
                 }
-                else
-                {
-                    labelmensaje.Text = "Por favor complete todos los campos obligatorios antes de enviar el formulario. Hay campos vacíos que deben ser llenados.";
-                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error y mostrar el mensaje personalizado
+                labelmensaje.Text = "Lo sentimos, se ha producido un error interno en el servidor al procesar su solicitud. Por favor, inténtelo de nuevo más tarde. Si el problema persiste, póngase en contacto con el equipo de soporte técnico para obtener ayuda adicional.";
             }
         }
 
