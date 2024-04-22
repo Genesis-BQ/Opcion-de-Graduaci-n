@@ -12,7 +12,7 @@
     <header class="header">
       
          <a href="Login.aspx">
-                <img src="./img/download-removebg-preview (1).png" />
+                 <img class="logo" src="./img/LogoCuc-removebg-preview.png" alt="Logo" />
             </a>
         <h1 class="title">Registro de Usuario</h1>
     </header>
