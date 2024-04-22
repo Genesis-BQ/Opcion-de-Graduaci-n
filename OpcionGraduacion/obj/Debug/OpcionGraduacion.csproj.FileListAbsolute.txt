@@ -172,7 +172,6 @@ C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\bin\Microsoft.
 C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\obj\Debug\OpcionGraduacion.csproj.AssemblyReference.cache
 C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\obj\Debug\OpcionGraduacion.csproj.CoreCompileInputs.cache
-C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\obj\Debug\OpcionGraduacion.csproj.CopyComplete
 C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\obj\Debug\OpcionGraduacion.dll
 C:\Users\gagoh\Source\Repos\Opcion-de-Graduaci-n\OpcionGraduacion\obj\Debug\OpcionGraduacion.pdb
 C:\Users\Mari\Desktop\OpcGraduacion\OpcionGraduacion\bin\OpcionGraduacion.dll.config
@@ -358,3 +357,6 @@ C:\Users\gbara\Documents\Sbir\opciongraducacion\OpcionGraduacion\obj\Debug\Opcio
 C:\Users\gbara\Documents\Sbir\opciongraducacion\OpcionGraduacion\obj\Debug\OpcionGraduacion.pdb
 C:\Users\Usuario\Desktop\Opcion-de-Graduaci-n\OpcionGraduacion\bin\Newtonsoft.Json.dll
 C:\Users\Usuario\Desktop\Opcion-de-Graduaci-n\OpcionGraduacion\bin\Newtonsoft.Json.xml
+C:\Users\gagoh\source\repos\Opcion-de-Graduaci-n\OpcionGraduacion\bin\Newtonsoft.Json.dll
+C:\Users\gagoh\source\repos\Opcion-de-Graduaci-n\OpcionGraduacion\bin\Newtonsoft.Json.xml
+C:\Users\gagoh\source\repos\Opcion-de-Graduaci-n\OpcionGraduacion\obj\Debug\OpcionGr.96F1CC1B.Up2Date

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro Matricula</title>
+    <title>Registro opción de graduación</title>
     <link rel="stylesheet" href="./CSS/style.css" />
     <link rel="icon" type="image/png" href="./img/download-removebg-preview (1).png" />
 </head>
@@ -47,7 +47,7 @@
         </main>
 
         <footer>
-            <p>Sistema Registro de Matricula. Todos los Derechos Reservados</p>
+        <p>Sistema Registro de opcion de graduación. Todos los Derechos Reservados</p>
         </footer>
     </form>
 </body>

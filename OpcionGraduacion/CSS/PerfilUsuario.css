@@ -23,6 +23,13 @@
         transform: translateY(-5px);
     }
 
+.Nombre {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
 .Formulario {
     width: 80%; /* Reduje el ancho del formulario */

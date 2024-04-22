@@ -16,7 +16,20 @@ namespace OpcionGraduacion
         {
             if (!IsPostBack)
             {
+
                 CargarDatos();
+
+                if (Session["UserName"] != null)
+                {
+                    string identificacion = Session["UserName"].ToString();
+                    string nombre = ObtenerNombrePorIdentificacion(identificacion);
+                    lblNombre.Text = nombre;
+                }
+                else
+                {
+
+                    Response.Redirect("Login.aspx");
+                }
             }
         }
 
@@ -52,7 +65,37 @@ namespace OpcionGraduacion
             }
         }
 
+        private string ObtenerNombrePorIdentificacion(string identificacion)
+        {
+            string nombreCompleto = string.Empty;
+            string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
+            string query = "SELECT Nombre, Apellido FROM [opciongraduacion].[opc].[Usuarios] WHERE Identificacion = @Identificacion";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Identificacion", identificacion);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string nombre = reader["Nombre"].ToString();
+                        string apellido = reader["Apellido"].ToString();
+                        nombreCompleto = nombre + " " + apellido;
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return nombreCompleto;
+        }
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
@@ -207,6 +250,13 @@ namespace OpcionGraduacion
             return estudianteMatriculado;
         }
 
+        protected void BtnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            Response.Redirect("Login.aspx");
+        }
 
 
     }
