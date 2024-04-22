@@ -36,11 +36,7 @@
                      <a href="Perfil.aspx" class="option">
                         <img src="/img/perfil.png" alt="Automatrícula Icon" />
                         <p>Mi Perfil</p>
-                    </a>
-                    <a href="validacion-info.aspx" class="option">
-                        <img src="/img/verif.png" alt="Servicio al Estudiante Icon" />
-                        <p>Verificación de informes</p>
-                    </a>
+                    </a> 
                 </section>
             </div>
         </main>
