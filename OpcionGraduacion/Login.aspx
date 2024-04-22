@@ -24,7 +24,7 @@
                 </div>
                  <asp:Button ID="btnIngresar" class="submit-btn" runat="server" OnClick="btnIngresar_Click" Text="Ingresar" />
                 <div class="login-links">
-                    <a href="Registro">Registrarse</a>
+                    <a href="Registro.aspx">Registrarse</a>
                     
                 </div>
                 <asp:Label ID="labelmensaje" runat="server"></asp:Label>
