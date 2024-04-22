@@ -14,94 +14,200 @@ namespace OpcionGraduacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        //    if (!IsPostBack)
-        //    {
-        //        CargarDatos();
-        //    }
+            if (!IsPostBack)
+            {
+                CargarDatos();
+            }
         }
 
-        //private void CargarDatos()
-        //{
-        //    //string connectionString = ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        using (SqlCommand command = new SqlCommand("ObtenerDatosCarrerasOpcionesGraduacion", connection))
-        //        {
-        //            command.CommandType = CommandType.StoredProcedure;
-        //            connection.Open();
-        //            SqlDataReader reader = command.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                string tipo = reader["Tipo"].ToString();
-        //                int id = Convert.ToInt32(reader["ID"]);
-        //                string nombre = reader["Nombre"].ToString();
-        //                string detalle = reader["Detalle"].ToString();
+        private void CargarDatos()
+        {
+            string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
 
-        //                if (tipo == "Carrera")
-        //                {
-        //                    ddlCarreras.Items.Add(new ListItem(nombre + " - " + detalle, id.ToString()));
-        //                }
-        //                else if (tipo == "Opción de Graduación")
-        //                {
-        //                    ddlOpcionesGraduacion.Items.Add(new ListItem(nombre + " - Carrera: " + detalle, id.ToString()));
-        //                }
-        //            }
-        //            reader.Close();
-        //        }
-        //    }
-        //}
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ObtenerDatosCarrerasOpcionesGraduacion", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string tipo = reader["Tipo"].ToString();
+                        int id = Convert.ToInt32(reader["ID"]);
+                        string nombre = reader["Nombre"].ToString();
+                        string detalle = reader["Detalle"].ToString();
 
-        //protected void btnRegistrar_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        string correoElectronico = email.Text;
-        //        int identificacionEstudiante;
-        //        if (!int.TryParse(identificacion.Text, out identificacionEstudiante))
-        //        {
-        //            lblMensaje.Text = "La identificación del estudiante debe ser un número entero válido.";
-        //            return;
-        //        }
-        //        string nombreEstudiante = nombre.Text;
-        //        string apellidoEstudiante = apellidos.Text;
-        //        int carreraID = Convert.ToInt32(ddlCarreras.SelectedValue);
-        //        bool cursosCompletos = cursos_completos.Checked;
-        //        int opcionGraduacionID = Convert.ToInt32(ddlOpcionesGraduacion.SelectedValue);
+                        if (tipo == "Carrera")
+                        {
+                            ddlCarreras.Items.Add(new ListItem(nombre + " - " + detalle, id.ToString()));
+                        }
+                        else if (tipo == "Opción de Graduación")
+                        {
+                            ddlOpcionesGraduacion.Items.Add(new ListItem(nombre + " - Carrera: " + detalle, id.ToString()));
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+        }
 
-        //        InsertarFormulario(correoElectronico, identificacionEstudiante, nombreEstudiante, apellidoEstudiante, carreraID, cursosCompletos, opcionGraduacionID);
-
-        //        Response.Redirect("Confirmacion.aspx");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblMensaje.Text = "Error al registrar el formulario: " + ex.Message;
-        //    }
-        //}
-
-        //private void InsertarFormulario(string correoElectronico, int identificacionEstudiante, string nombre, string apellido, int carreraID, bool cursosCompletos, int opcionGraduacionID)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString))
-        //    {
-        //        using (SqlCommand command = new SqlCommand("InsertarFormulario", connection))
-        //        {
-        //            command.CommandType = CommandType.StoredProcedure;
-        //            command.Parameters.AddWithValue("@CorreoElectronico", correoElectronico);
-        //            command.Parameters.AddWithValue("@Identificacion", identificacionEstudiante);
-        //            command.Parameters.AddWithValue("@Nombre", nombre);
-        //            command.Parameters.AddWithValue("@Apellido", apellido);
-        //            command.Parameters.AddWithValue("@CarreraID", carreraID);
-        //            command.Parameters.AddWithValue("@CursosCompletos", cursosCompletos);
-        //            command.Parameters.AddWithValue("@OpcionGraduacionID", opcionGraduacionID);
-
-        //            connection.Open();
-        //            command.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                // Verificar si hay campos vacíos
+                if (string.IsNullOrEmpty(identificacion.Text) || string.IsNullOrEmpty(nombre.Text) || string.IsNullOrEmpty(apellidos.Text) || string.IsNullOrEmpty(email.Text) || ddlCarreras.SelectedIndex == 0 || ddlOpcionesGraduacion.SelectedIndex == 0)
+                {
+                    // Mostrar mensaje de error al usuario
+                    lblMensaje.Text = "Por favor complete todos los campos obligatorios antes de enviar el formulario. Hay campos vacíos que deben ser llenados.";
+                    return;
+                }
+
+                // Verificar si el estudiante está matriculado en la universidad
+                bool estudianteMatriculado = VerificarEstudianteMatriculado(identificacion.Text);
+                if (!estudianteMatriculado)
+                {
+                    // Mostrar mensaje de error al usuario
+                    lblMensaje.Text = "El estudiante no está matriculado en esta universidad.";
+                    return;
+                }
+
+                // Verificar si el correo electrónico ya tiene un formulario registrado
+                bool formularioExistente = VerificarFormularioExistente(identificacion.Text);
+                if (formularioExistente)
+                {
+                    // Mostrar mensaje de error al usuario
+                    lblMensaje.Text = "El estudiante ya llenó un formulario.";
+                    return;
+                }
+
+                // Si no hay campos vacíos ni correos duplicados y el estudiante está matriculado, proceder con la inserción
+                string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
+
+                string query = "INSERT INTO [opc].[Formularios] (Identificacion, Nombre, Apellido, CorreoElectronico, CarreraID, CursosCompletos, OpcionGraduacionID, Estado) " +
+                               "VALUES (@Identificacion, @Nombre, @Apellido, @CorreoElectronico, @CarreraID, @CursosCompletos, @OpcionGraduacionID, 'Pendiente')";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Agregar parámetros
+                        command.Parameters.AddWithValue("@Identificacion", identificacion.Text);
+                        command.Parameters.AddWithValue("@Nombre", nombre.Text);
+                        command.Parameters.AddWithValue("@Apellido", apellidos.Text);
+                        command.Parameters.AddWithValue("@CorreoElectronico", email.Text);
+                        command.Parameters.AddWithValue("@CarreraID", ddlCarreras.SelectedValue);
+                        command.Parameters.AddWithValue("@CursosCompletos", cursos_completos.Checked ? 1 : 0);
+                        command.Parameters.AddWithValue("@OpcionGraduacionID", ddlOpcionesGraduacion.SelectedValue);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        connection.Close();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Inserción exitosa, mostrar mensaje de éxito al usuario
+                            lblMensaje.Text = "Su registro se validó con éxito. Ver el formulario de informes";
+                        }
+                        else
+                        {
+                            // Error durante la inserción, mostrar mensaje de error al usuario
+                            lblMensaje.Text = "Error durante el registro. Por favor, inténtelo de nuevo.";
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                lblMensaje.Text = "Error al cargar los datos";
+            }
         }
+
+
+
+        private bool VerificarFormularioExistente(string identificacion)
+        {
+            // Variable para almacenar el resultado de la verificación
+            bool estudianteRegistrado = false;
+
+            // Cadena de conexión a la base de datos
+            string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
+
+            // Consulta SQL para verificar si el estudiante está registrado
+            string query = "SELECT COUNT(*) FROM Formularios WHERE Identificacion = @Identificacion";
+
+            // Crear la conexión a la base de datos y el comando SQL
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Agregar parámetro para la identificación del estudiante
+                    command.Parameters.AddWithValue("@Identificacion", identificacion);
+
+                    // Abrir la conexión
+                    connection.Open();
+
+                    // Ejecutar la consulta y obtener el resultado
+                    int count = (int)command.ExecuteScalar();
+
+                    // Si el resultado es mayor que cero, significa que el estudiante está registrado
+                    if (count > 0)
+                    {
+                        estudianteRegistrado = true;
+                    }
+
+                    // Cerrar la conexión
+                    connection.Close();
+                }
+            }
+
+            // Retornar el resultado de la verificación
+            return estudianteRegistrado;
+        }
+
+        private bool VerificarEstudianteMatriculado(string identificacion)
+        {
+            // Variable para almacenar el resultado de la verificación
+            bool estudianteMatriculado = false;
+
+            // Cadena de conexión a la base de datos
+            string connectionString = "Data Source=tiusr3pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=opciongraduacion;User ID=Opc;Password=opciongraduacion;";
+
+            // Consulta SQL para verificar si el estudiante está matriculado
+            string query = "SELECT COUNT(*) FROM Estudiantes WHERE Identificacion = @Identificacion";
+
+            // Crear la conexión a la base de datos y el comando SQL
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Agregar parámetro para la identificación del estudiante
+                    command.Parameters.AddWithValue("@Identificacion", identificacion);
+
+                    // Abrir la conexión
+                    connection.Open();
+
+                    // Ejecutar la consulta y obtener el resultado
+                    int count = (int)command.ExecuteScalar();
+
+                    // Si el resultado es mayor que cero, significa que el estudiante está matriculado en la tabla Estudiantes
+                    if (count > 0)
+                    {
+                        estudianteMatriculado = true;
+                    }
+
+                    // Cerrar la conexión
+                    connection.Close();
+                }
+            }
+
+            // Retornar el resultado de la verificación
+            return estudianteMatriculado;
+        }
+
+
+
     }
 }

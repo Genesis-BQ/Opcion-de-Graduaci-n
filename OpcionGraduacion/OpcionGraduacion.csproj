@@ -87,7 +87,6 @@
     <Content Include="Perfil.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Registro.aspx" />
-    <Content Include="validacion-info.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -126,13 +125,6 @@
     </Compile>
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="validacion-info.aspx.cs">
-      <DependentUpon>validacion-info.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="validacion-info.aspx.designer.cs">
-      <DependentUpon>validacion-info.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
