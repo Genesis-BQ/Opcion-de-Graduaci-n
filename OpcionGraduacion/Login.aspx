@@ -15,7 +15,7 @@
         <div class="form-container">
             <form id="Form1" runat="server" class="login-form">
                 <div class="input-group">
-                    <label for="usuarios">Usuario</label>
+                    <label for="usuarios">Identificación</label>
                     <input type="text" id="usuarios" name="usuarios" runat="server" required>
                 </div>
                 <div class="input-group">
@@ -23,7 +23,7 @@
                     <input type="password" id="password" name="password" runat="server" required>
                 </div>
                  <asp:Button ID="btnIngresar" class="submit-btn" runat="server" OnClick="btnIngresar_Click" Text="Ingresar" />
-                <div class="login-links">
+                 <div class="login-links">
                     <a href="Registro.aspx">Registrarse</a>
                     
                 </div>

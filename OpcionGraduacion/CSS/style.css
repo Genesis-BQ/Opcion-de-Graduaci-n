@@ -1,5 +1,5 @@
-html{
-    width:100%;
+html {
+    width: 100%;
 }
 
 body {
@@ -9,6 +9,14 @@ body {
     background-color: white;
     color: #014E70;
 }
+
+.Nombre {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
 header {
     display: flex;
